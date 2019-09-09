@@ -28,7 +28,7 @@ class Feature1MediatorModule {
     }
 
     @Provides
-//    @Singleton
+    @Singleton
     fun provideFeature1Component(
         feature1Dependencies: Lazy<Feature1Dependencies>
     ): Feature1Component {

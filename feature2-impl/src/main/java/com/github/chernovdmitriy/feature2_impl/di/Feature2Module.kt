@@ -18,7 +18,8 @@ class Feature2Module {
     @Provides
     internal fun provideFeature2Object(feature1Api: Feature1Api): Feature2Object {
         return Feature2Object(
-            feature1ToString = feature1Api.feature1Object.toString()
+            feature1ToString = feature1Api.feature1Object.toString(),
+            time = System.currentTimeMillis().toString()
         )
     }
 
