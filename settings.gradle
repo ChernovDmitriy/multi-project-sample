@@ -1,0 +1,2 @@
+include ':app', ':feature1-impl', ':core-object-api', ':feature1-api', ':feature2-api', ':feature2-impl'
+rootProject.name='MultiProject Sample'
