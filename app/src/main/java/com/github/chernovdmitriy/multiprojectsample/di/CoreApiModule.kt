@@ -10,6 +10,6 @@ class CoreApiModule {
 
     @Singleton
     @Provides
-    internal fun provideCoreObject() = CoreObject()
+    internal fun provideCoreObject() = CoreObject(System.currentTimeMillis().toString())
 
 }

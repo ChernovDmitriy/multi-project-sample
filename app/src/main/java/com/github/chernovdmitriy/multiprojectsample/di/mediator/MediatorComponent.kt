@@ -7,12 +7,16 @@ import com.github.chernovdmitriy.injectionholderx.InjectionHolderX
 import com.github.chernovdmitriy.multiprojectsample.di.AppComponent
 import com.github.chernovdmitriy.multiprojectsample.di.mediator.feature1.Feature1MediatorModule
 import com.github.chernovdmitriy.multiprojectsample.di.mediator.feature2.Feature2MediatorModule
+import com.github.chernovdmitriy.multiprojectsample.di.navigation.NavigationApi
 import dagger.Component
 import javax.inject.Singleton
 
 @Singleton
 @Component(
-    dependencies = [CoreObjectApi::class],
+    dependencies = [
+        CoreObjectApi::class,
+        NavigationApi::class
+    ],
     modules = [
         Feature2MediatorModule::class,
         Feature1MediatorModule::class
@@ -26,12 +30,13 @@ interface MediatorComponent {
     companion object {
 
         val instance: MediatorComponent by lazy {
-            val coreObjectApi: CoreObjectApi =
+            val appComponent: AppComponent =
                 InjectionHolderX.instance.findComponent(AppComponent::class.java)
 
             DaggerMediatorComponent
                 .builder()
-                .coreObjectApi(coreObjectApi)
+                .coreObjectApi(appComponent)
+                .navigationApi(appComponent)
                 .build()
         }
     }

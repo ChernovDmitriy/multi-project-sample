@@ -2,16 +2,17 @@ package com.github.chernovdmitriy.feature2_impl.di
 
 import javax.inject.Inject
 
-class Feature2ComponentProvider private constructor() {
+class Feature2ComponentProvider {
+
+    init {
+        injectionFunction?.invoke(this)
+    }
 
     companion object {
-
-        var provideComponentFunction: (() -> Unit)? = null
-
-        val instance by lazy {
-            provideComponentFunction?.invoke()
-            Feature2ComponentProvider()
-        }
+        var injectionFunction: (Feature2ComponentProvider.() -> Unit)? = null
+//        val instance by lazy {
+//            Feature2ComponentProvider().apply { injectionFunction?.invoke(this) }
+//        }
     }
 
     @Inject
