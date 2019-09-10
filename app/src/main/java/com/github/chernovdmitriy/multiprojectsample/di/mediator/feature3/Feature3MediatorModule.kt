@@ -13,7 +13,6 @@ class Feature3MediatorModule {
 
     private var component: Feature3Component? = null
 
-
     @Provides
 //    @Feature3MediatorScope
     fun provideFeature3Deps(

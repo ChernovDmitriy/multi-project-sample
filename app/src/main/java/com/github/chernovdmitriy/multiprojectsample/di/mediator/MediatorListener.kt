@@ -9,8 +9,6 @@ import com.github.chernovdmitriy.multiprojectsample.di.mediator.feature3.Feature
 
 object MediatorListener {
 
-//    private val mediatorComponent by lazy { MediatorComponent.instance }
-
     fun listenFeatures() {
         Feature1ComponentProvider.injectionFunction = {
             Feature1MediatorComponent.instance.inject(this)
