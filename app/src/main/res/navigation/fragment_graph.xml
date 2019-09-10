@@ -14,5 +14,13 @@
     <fragment
         android:id="@+id/feature2Fragment"
         android:name="com.github.chernovdmitriy.feature2_impl.Feature2Fragment"
-        android:label="Feature2Fragment" />
+        android:label="Feature2Fragment">
+        <action
+            android:id="@+id/action_feature2Fragment_to_feature3Fragment"
+            app:destination="@id/feature3Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/feature3Fragment"
+        android:name="com.github.chernovdmitriy.feature3_impl.Feature3Fragment"
+        android:label="Feature3Fragment" />
 </navigation>

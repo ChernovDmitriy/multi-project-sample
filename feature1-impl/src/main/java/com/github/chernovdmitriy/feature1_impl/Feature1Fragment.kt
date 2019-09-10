@@ -5,8 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.github.chernovdmitriy.core_object_api.CoreObject
 import com.github.chernovdmitriy.feature1_api.Feature1Navigator
+import com.github.chernovdmitriy.feature1_api.Feature1Object
 import com.github.chernovdmitriy.feature1_impl.di.Feature1Component
 import com.github.chernovdmitriy.feature1_impl.di.Feature1ComponentProvider
 import com.github.chernovdmitriy.injectionholdercore.ComponentOwner
@@ -25,7 +25,7 @@ class Feature1Fragment : Fragment(), ComponentOwner<Feature1Component> {
     internal lateinit var feature1Navigator: Feature1Navigator
 
     @Inject
-    internal lateinit var coreObject: CoreObject
+    internal lateinit var feature1Object: Feature1Object
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -36,7 +36,7 @@ class Feature1Fragment : Fragment(), ComponentOwner<Feature1Component> {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        textView.text = "CoreObject: $coreObject"
+        textView.text = "feature1Object: $feature1Object"
         button.setOnClickListener { feature1Navigator.moveToFeature2() }
     }
 

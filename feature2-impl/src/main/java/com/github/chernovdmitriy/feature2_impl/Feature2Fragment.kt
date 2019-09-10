@@ -36,7 +36,8 @@ class Feature2Fragment : Fragment(), ComponentOwner<Feature2Component> {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        textView.text = "Feature2Object: $feature2Object"
+        textView.text = "feature2Object: $feature2Object"
+        button.setOnClickListener { feature2Navigator.moveToFeature3() }
     }
 
     override fun inject(t: Feature2Component) = t.inject(this)

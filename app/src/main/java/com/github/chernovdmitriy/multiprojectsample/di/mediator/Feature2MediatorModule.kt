@@ -1,4 +1,4 @@
-package com.github.chernovdmitriy.multiprojectsample.di.mediator.feature2
+package com.github.chernovdmitriy.multiprojectsample.di.mediator
 
 import com.github.chernovdmitriy.feature1_api.Feature1Api
 import com.github.chernovdmitriy.feature2_api.Feature2Api

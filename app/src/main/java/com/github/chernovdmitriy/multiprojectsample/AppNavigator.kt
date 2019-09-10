@@ -5,6 +5,7 @@ import com.github.chernovdmitriy.feature1_api.Feature1Navigator
 import com.github.chernovdmitriy.feature2_api.Feature2Navigator
 
 class AppNavigator : Feature1Navigator, Feature2Navigator {
+
     private var navController: NavController? = null
 
     fun bind(navController: NavController) {
@@ -17,6 +18,10 @@ class AppNavigator : Feature1Navigator, Feature2Navigator {
 
     override fun moveToFeature2() {
         navController?.navigate(R.id.action_feature1Fragment_to_feature2Fragment)
+    }
+
+    override fun moveToFeature3() {
+        navController?.navigate(R.id.action_feature2Fragment_to_feature3Fragment)
     }
 
 }
