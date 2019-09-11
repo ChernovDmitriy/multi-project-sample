@@ -7,11 +7,12 @@ import com.github.chernovdmitriy.feature3_impl.di.Feature3Component
 import com.github.chernovdmitriy.feature3_impl.di.Feature3Dependencies
 import dagger.Module
 import dagger.Provides
+import java.lang.ref.WeakReference
 
 @Module
 class Feature3MediatorModule {
 
-    private var component: Feature3Component? = null
+    private var component: WeakReference<Feature3Component>? = null
 
     @Provides
 //    @Feature3MediatorScope
@@ -35,14 +36,14 @@ class Feature3MediatorModule {
     @Provides
 //    @Feature3MediatorScope
     fun provideFeature3Api(feature3Dependencies: Feature3Dependencies): Feature3Api =
-        component ?: provideComponent(feature3Dependencies)
+        component?.get() ?: provideComponent(feature3Dependencies)
 
     private fun provideComponent(feature3Dependencies: Feature3Dependencies): Feature3Component {
         return DaggerFeature3Component
             .builder()
             .feature3Dependencies(feature3Dependencies)
             .build()
-            .also { component = it }
+            .also { component = WeakReference(it) }
     }
 
 }

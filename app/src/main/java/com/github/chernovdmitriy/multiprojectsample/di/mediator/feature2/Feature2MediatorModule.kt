@@ -9,11 +9,12 @@ import com.github.chernovdmitriy.feature2_impl.di.Feature2Dependencies
 import com.github.chernovdmitriy.multiprojectsample.AppNavigator
 import dagger.Module
 import dagger.Provides
+import java.lang.ref.WeakReference
 
 @Module
 class Feature2MediatorModule {
 
-    private var component: Feature2Component? = null
+    private var component: WeakReference<Feature2Component>? = null
 
     @Provides
 //    @Feature2MediatorScope
@@ -39,14 +40,14 @@ class Feature2MediatorModule {
     @Provides
 //    @Feature2MediatorScope
     fun provideFeature2Api(feature2Dependencies: Feature2Dependencies): Feature2Api =
-        component ?: provideComponent(feature2Dependencies)
+        component?.get() ?: provideComponent(feature2Dependencies)
 
     private fun provideComponent(feature2Dependencies: Feature2Dependencies): Feature2Component {
         return DaggerFeature2Component
             .builder()
             .feature2Dependencies(feature2Dependencies)
             .build()
-            .also { component = it }
+            .also { component = WeakReference(it) }
     }
 
 }

@@ -10,11 +10,12 @@ import com.github.chernovdmitriy.multiprojectsample.AppNavigator
 import dagger.Lazy
 import dagger.Module
 import dagger.Provides
+import java.lang.ref.WeakReference
 
 @Module
 class Feature1MediatorModule {
 
-    private var component: Feature1Component? = null
+    private var component: WeakReference<Feature1Component>? = null
 
     @Provides
 //    @Feature1MediatorScope
@@ -41,14 +42,14 @@ class Feature1MediatorModule {
     fun provideFeature1Api(
         feature1Dependencies: Lazy<Feature1Dependencies>
     ): Feature1Api =
-        component ?: provideComponent(feature1Dependencies.get())
+        component?.get() ?: provideComponent(feature1Dependencies.get())
 
     private fun provideComponent(feature1Dependencies: Feature1Dependencies): Feature1Component {
         return DaggerFeature1Component
             .builder()
             .feature1Dependencies(feature1Dependencies)
             .build()
-            .also { component = it }
+            .also { component = WeakReference(it) }
     }
 
 }
