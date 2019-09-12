@@ -9,8 +9,9 @@ import com.github.chernovdmitriy.feature1_api.Feature1Navigator
 import com.github.chernovdmitriy.feature1_api.Feature1Object
 import com.github.chernovdmitriy.feature1_impl.di.Feature1Component
 import com.github.chernovdmitriy.feature1_impl.di.Feature1ComponentProvider
-import com.github.chernovdmitriy.injectionholdercore.ComponentOwner
 import kotlinx.android.synthetic.main.fmt_feature1.*
+import ru.mosparking.injectionholder.ComponentOwner
+import ru.mosparking.injectionholder.InjectionHolder
 import javax.inject.Inject
 
 class Feature1Fragment : Fragment(), ComponentOwner<Feature1Component> {
@@ -42,7 +43,11 @@ class Feature1Fragment : Fragment(), ComponentOwner<Feature1Component> {
 
     override fun inject(t: Feature1Component) = t.inject(this)
 
-    override fun provideComponent(): Feature1Component =
-        Feature1ComponentProvider().feature1Component
+    override fun provideComponent(): Feature1Component {
+        return InjectionHolder.instance.findComponent(
+            componentClass = Feature1Component::class.java,
+            componentBuilder = { Feature1ComponentProvider.getInstance().feature1Component }
+        )
+    }
 
 }

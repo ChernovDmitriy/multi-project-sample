@@ -7,15 +7,13 @@ import com.github.chernovdmitriy.feature3_impl.di.Feature3Component
 import com.github.chernovdmitriy.feature3_impl.di.Feature3Dependencies
 import dagger.Module
 import dagger.Provides
-import java.lang.ref.WeakReference
+import ru.mosparking.injectionholder.InjectionHolder
 
 @Module
 class Feature3MediatorModule {
 
-    private var component: WeakReference<Feature3Component>? = null
-
     @Provides
-//    @Feature3MediatorScope
+    @Feature3MediatorScope
     fun provideFeature3Deps(
         feature2Api: Feature2Api
     ): Feature3Dependencies {
@@ -25,25 +23,25 @@ class Feature3MediatorModule {
     }
 
     @Provides
-//    @Feature3MediatorScope
+    @Feature3MediatorScope
     fun provideFeature3Component(
         feature3Dependencies: Feature3Dependencies
     ): Feature3Component {
-        return provideComponent(feature3Dependencies)
-    }
-
-
-    @Provides
-//    @Feature3MediatorScope
-    fun provideFeature3Api(feature3Dependencies: Feature3Dependencies): Feature3Api =
-        component?.get() ?: provideComponent(feature3Dependencies)
-
-    private fun provideComponent(feature3Dependencies: Feature3Dependencies): Feature3Component {
         return DaggerFeature3Component
             .builder()
             .feature3Dependencies(feature3Dependencies)
             .build()
-            .also { component = WeakReference(it) }
+            .also {
+                InjectionHolder.instance.addOwnerlessComponent(it)
+            }
     }
+
+
+    @Provides
+    @Feature3MediatorScope
+    fun provideFeature3Api(
+        feature3Component: Feature3Component
+    ): Feature3Api =
+        feature3Component
 
 }

@@ -22,12 +22,26 @@ interface Feature1MediatorComponent {
     fun inject(feature1ComponentProvider: Feature1ComponentProvider)
 
     companion object {
-        val instance: Feature1MediatorComponent by lazy {
-            DaggerFeature1MediatorComponent
+
+        private var instance: Feature1MediatorComponent? = null
+
+        fun newInstance(): Feature1MediatorComponent {
+            return provideComponent()
+        }
+
+        fun getInstance(): Feature1MediatorComponent {
+            return instance ?: newInstance()
+        }
+
+        private fun provideComponent(): Feature1MediatorComponent {
+            return DaggerFeature1MediatorComponent
                 .builder()
                 .coreObjectApi(AppComponent.instance)
                 .navigationApi(AppComponent.instance)
                 .build()
+                .also {
+                    instance = it
+                }
         }
     }
 

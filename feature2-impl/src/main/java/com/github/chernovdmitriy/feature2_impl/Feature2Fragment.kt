@@ -9,8 +9,9 @@ import com.github.chernovdmitriy.feature2_api.Feature2Navigator
 import com.github.chernovdmitriy.feature2_api.Feature2Object
 import com.github.chernovdmitriy.feature2_impl.di.Feature2Component
 import com.github.chernovdmitriy.feature2_impl.di.Feature2ComponentProvider
-import com.github.chernovdmitriy.injectionholdercore.ComponentOwner
 import kotlinx.android.synthetic.main.fmt_feature2.*
+import ru.mosparking.injectionholder.ComponentOwner
+import ru.mosparking.injectionholder.InjectionHolder
 import javax.inject.Inject
 
 class Feature2Fragment : Fragment(), ComponentOwner<Feature2Component> {
@@ -42,7 +43,20 @@ class Feature2Fragment : Fragment(), ComponentOwner<Feature2Component> {
 
     override fun inject(t: Feature2Component) = t.inject(this)
 
-    override fun provideComponent(): Feature2Component =
-        Feature2ComponentProvider().feature2Component
+    override fun provideComponent(): Feature2Component {
+        return InjectionHolder.instance.findComponent(
+            componentClass = Feature2Component::class.java,
+            componentBuilder = { Feature2ComponentProvider.getInstance().feature2Component }
+        )
+//        val oldComponent =
+//            try {
+//                InjectionHolder.instance.findComponent(Feature2Component::class.java)
+//            } catch (e: Exception) {
+//                e.printStackTrace()
+//                null
+//            }
+//
+//        return oldComponent ?: Feature2ComponentProvider().feature2Component
+    }
 
 }

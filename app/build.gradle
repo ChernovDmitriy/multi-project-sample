@@ -32,6 +32,7 @@ dependencies {
     implementation project(':feature2-impl')
     implementation project(':feature3-api')
     implementation project(':feature3-impl')
+    implementation project(':injectionholder')
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation "androidx.appcompat:appcompat:${versions.appcompat}"
@@ -39,7 +40,7 @@ dependencies {
     implementation "androidx.constraintlayout:constraintlayout:${versions.constraintlayout}"
     implementation "android.arch.navigation:navigation-fragment-ktx:${versions.navigation}"
 
-    implementation "com.github.chernovdmitriy.injectionholder:androidx:${versions.injectionholder}"
+//    implementation "com.github.chernovdmitriy.injectionholder:androidx:${versions.injectionholder}"
     implementation "com.google.dagger:dagger:${versions.dagger}"
     kapt "com.google.dagger:dagger-compiler:${versions.dagger}"
 

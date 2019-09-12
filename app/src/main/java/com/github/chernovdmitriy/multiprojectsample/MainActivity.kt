@@ -3,9 +3,9 @@ package com.github.chernovdmitriy.multiprojectsample
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
-import com.github.chernovdmitriy.injectionholdercore.ComponentOwner
-import com.github.chernovdmitriy.injectionholderx.InjectionHolderX
 import com.github.chernovdmitriy.multiprojectsample.di.AppComponent
+import ru.mosparking.injectionholder.ComponentOwner
+import ru.mosparking.injectionholder.InjectionHolder
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity(), ComponentOwner<AppComponent> {
@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity(), ComponentOwner<AppComponent> {
         findNavController(R.id.nav_host_fragment).navigateUp()
 
     override fun provideComponent(): AppComponent =
-        InjectionHolderX.instance.findComponent(AppComponent::class.java)
+        InjectionHolder.instance.findComponent(AppComponent::class.java)
 
     override fun inject(t: AppComponent) = t.inject(this)
 

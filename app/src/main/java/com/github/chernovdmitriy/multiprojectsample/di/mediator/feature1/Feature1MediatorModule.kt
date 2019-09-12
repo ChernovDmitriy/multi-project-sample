@@ -7,18 +7,15 @@ import com.github.chernovdmitriy.feature1_impl.Feature1Dependencies
 import com.github.chernovdmitriy.feature1_impl.di.DaggerFeature1Component
 import com.github.chernovdmitriy.feature1_impl.di.Feature1Component
 import com.github.chernovdmitriy.multiprojectsample.AppNavigator
-import dagger.Lazy
 import dagger.Module
 import dagger.Provides
-import java.lang.ref.WeakReference
+import ru.mosparking.injectionholder.InjectionHolder
 
 @Module
 class Feature1MediatorModule {
 
-    private var component: WeakReference<Feature1Component>? = null
-
     @Provides
-//    @Feature1MediatorScope
+    @Feature1MediatorScope
     fun provideFeature1Deps(
         coreObjectApi: CoreObjectApi,
         appNavigator: AppNavigator
@@ -30,26 +27,24 @@ class Feature1MediatorModule {
     }
 
     @Provides
-//    @Feature1MediatorScope
+    @Feature1MediatorScope
     fun provideFeature1Component(
         feature1Dependencies: Feature1Dependencies
     ): Feature1Component {
-        return provideComponent(feature1Dependencies)
-    }
-
-    @Provides
-//    @Feature1MediatorScope
-    fun provideFeature1Api(
-        feature1Dependencies: Lazy<Feature1Dependencies>
-    ): Feature1Api =
-        component?.get() ?: provideComponent(feature1Dependencies.get())
-
-    private fun provideComponent(feature1Dependencies: Feature1Dependencies): Feature1Component {
         return DaggerFeature1Component
             .builder()
             .feature1Dependencies(feature1Dependencies)
             .build()
-            .also { component = WeakReference(it) }
+            .also {
+                InjectionHolder.instance.addOwnerlessComponent(it)
+            }
     }
+
+    @Provides
+    @Feature1MediatorScope
+    fun provideFeature1Api(
+        feature1Component: Feature1Component
+    ): Feature1Api =
+        feature1Component
 
 }

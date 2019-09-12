@@ -11,15 +11,15 @@ object MediatorListener {
 
     fun listenFeatures() {
         Feature1ComponentProvider.injectionFunction = {
-            Feature1MediatorComponent.instance.inject(this)
+            Feature1MediatorComponent.newInstance().inject(this)
         }
 
         Feature2ComponentProvider.injectionFunction = {
-            Feature2MediatorComponent.instance.inject(this)
+            Feature2MediatorComponent.newInstance().inject(this)
         }
 
         Feature3ComponentProvider.injectionFunction = {
-            Feature3MediatorComponent.instance.inject(this)
+            Feature3MediatorComponent.newInstance().inject(this)
         }
 
     }

@@ -9,15 +9,13 @@ import com.github.chernovdmitriy.feature2_impl.di.Feature2Dependencies
 import com.github.chernovdmitriy.multiprojectsample.AppNavigator
 import dagger.Module
 import dagger.Provides
-import java.lang.ref.WeakReference
+import ru.mosparking.injectionholder.InjectionHolder
 
 @Module
 class Feature2MediatorModule {
 
-    private var component: WeakReference<Feature2Component>? = null
-
     @Provides
-//    @Feature2MediatorScope
+    @Feature2MediatorScope
     fun provideFeature2Deps(
         feature1Api: Feature1Api,
         appNavigator: AppNavigator
@@ -29,25 +27,24 @@ class Feature2MediatorModule {
     }
 
     @Provides
-//    @Feature2MediatorScope
+    @Feature2MediatorScope
     fun provideFeature2Component(
         feature2Dependencies: Feature2Dependencies
     ): Feature2Component {
-        return provideComponent(feature2Dependencies)
-    }
-
-
-    @Provides
-//    @Feature2MediatorScope
-    fun provideFeature2Api(feature2Dependencies: Feature2Dependencies): Feature2Api =
-        component?.get() ?: provideComponent(feature2Dependencies)
-
-    private fun provideComponent(feature2Dependencies: Feature2Dependencies): Feature2Component {
         return DaggerFeature2Component
             .builder()
             .feature2Dependencies(feature2Dependencies)
             .build()
-            .also { component = WeakReference(it) }
+            .also {
+                InjectionHolder.instance.addOwnerlessComponent(it)
+            }
     }
+
+    @Provides
+    @Feature2MediatorScope
+    fun provideFeature2Api(
+        feature2Component: Feature2Component
+    ): Feature2Api =
+        feature2Component
 
 }
