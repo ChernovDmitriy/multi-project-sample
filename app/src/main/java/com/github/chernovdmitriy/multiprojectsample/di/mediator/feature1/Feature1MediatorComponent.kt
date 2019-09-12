@@ -6,6 +6,7 @@ import com.github.chernovdmitriy.feature1_impl.di.Feature1ComponentProvider
 import com.github.chernovdmitriy.multiprojectsample.di.AppComponent
 import com.github.chernovdmitriy.multiprojectsample.di.navigation.NavigationApi
 import dagger.Component
+import java.lang.ref.SoftReference
 
 @Feature1MediatorScope
 @Component(
@@ -23,14 +24,14 @@ interface Feature1MediatorComponent {
 
     companion object {
 
-        private var instance: Feature1MediatorComponent? = null
+        private var instance: SoftReference<Feature1MediatorComponent>? = null
 
         fun newInstance(): Feature1MediatorComponent {
             return provideComponent()
         }
 
         fun getInstance(): Feature1MediatorComponent {
-            return instance ?: newInstance()
+            return instance?.get() ?: newInstance()
         }
 
         private fun provideComponent(): Feature1MediatorComponent {
@@ -40,7 +41,7 @@ interface Feature1MediatorComponent {
                 .navigationApi(AppComponent.instance)
                 .build()
                 .also {
-                    instance = it
+                    instance = SoftReference(it)
                 }
         }
     }

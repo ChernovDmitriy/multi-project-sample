@@ -33,5 +33,5 @@ ext.versions = [
         navigation      : "1.0.0",
         constraintlayout: "2.0.0-beta2",
         dagger          : "2.17",
-        injectionholder : "1.0.4"
+        injectionholder : "1.0.5"
 ]

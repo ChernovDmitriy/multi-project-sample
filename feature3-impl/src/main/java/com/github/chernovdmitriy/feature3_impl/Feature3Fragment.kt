@@ -8,9 +8,9 @@ import androidx.fragment.app.Fragment
 import com.github.chernovdmitriy.feature3_api.Feature3Object
 import com.github.chernovdmitriy.feature3_impl.di.Feature3Component
 import com.github.chernovdmitriy.feature3_impl.di.Feature3ComponentProvider
+import com.github.chernovdmitriy.injectionholdercore.ComponentOwner
+import com.github.chernovdmitriy.injectionholderx.InjectionHolderX
 import kotlinx.android.synthetic.main.fmt_feature3.*
-import ru.mosparking.injectionholder.ComponentOwner
-import ru.mosparking.injectionholder.InjectionHolder
 import javax.inject.Inject
 
 class Feature3Fragment : Fragment(), ComponentOwner<Feature3Component> {
@@ -41,7 +41,7 @@ class Feature3Fragment : Fragment(), ComponentOwner<Feature3Component> {
     override fun inject(t: Feature3Component) = t.inject(this)
 
     override fun provideComponent(): Feature3Component {
-        return InjectionHolder.instance.findComponent(
+        return InjectionHolderX.instance.findComponent(
             componentClass = Feature3Component::class.java,
             componentBuilder = { Feature3ComponentProvider.getInstance().feature3Component }
         )

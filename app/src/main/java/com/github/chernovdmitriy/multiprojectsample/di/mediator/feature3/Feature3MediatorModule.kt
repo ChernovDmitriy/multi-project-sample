@@ -5,9 +5,9 @@ import com.github.chernovdmitriy.feature3_api.Feature3Api
 import com.github.chernovdmitriy.feature3_impl.di.DaggerFeature3Component
 import com.github.chernovdmitriy.feature3_impl.di.Feature3Component
 import com.github.chernovdmitriy.feature3_impl.di.Feature3Dependencies
+import com.github.chernovdmitriy.injectionholderx.InjectionHolderX
 import dagger.Module
 import dagger.Provides
-import ru.mosparking.injectionholder.InjectionHolder
 
 @Module
 class Feature3MediatorModule {
@@ -32,7 +32,7 @@ class Feature3MediatorModule {
             .feature3Dependencies(feature3Dependencies)
             .build()
             .also {
-                InjectionHolder.instance.addOwnerlessComponent(it)
+                InjectionHolderX.instance.addOwnerlessComponent(it)
             }
     }
 

@@ -6,10 +6,10 @@ import com.github.chernovdmitriy.feature1_api.Feature1Navigator
 import com.github.chernovdmitriy.feature1_impl.Feature1Dependencies
 import com.github.chernovdmitriy.feature1_impl.di.DaggerFeature1Component
 import com.github.chernovdmitriy.feature1_impl.di.Feature1Component
+import com.github.chernovdmitriy.injectionholderx.InjectionHolderX
 import com.github.chernovdmitriy.multiprojectsample.AppNavigator
 import dagger.Module
 import dagger.Provides
-import ru.mosparking.injectionholder.InjectionHolder
 
 @Module
 class Feature1MediatorModule {
@@ -36,7 +36,7 @@ class Feature1MediatorModule {
             .feature1Dependencies(feature1Dependencies)
             .build()
             .also {
-                InjectionHolder.instance.addOwnerlessComponent(it)
+                InjectionHolderX.instance.addOwnerlessComponent(it)
             }
     }
 
