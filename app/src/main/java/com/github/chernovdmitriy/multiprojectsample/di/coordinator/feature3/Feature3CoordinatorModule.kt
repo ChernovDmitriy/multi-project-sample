@@ -13,7 +13,7 @@ import dagger.Module
 import dagger.Provides
 
 @Module
-class Feature3CoordinatorModule {
+class Feature3CoordinatorModule(private val vrpNumber: String) {
 
 
     @Provides
@@ -37,6 +37,7 @@ class Feature3CoordinatorModule {
         return object : Feature3Dependencies {
             override val feature3Output: Feature3Output = feature3Coordinator
             override val feature2Api: Feature2Api = feature2Api
+            override val vrp: String = vrpNumber
         }
     }
 

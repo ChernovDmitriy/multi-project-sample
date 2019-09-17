@@ -19,7 +19,7 @@ object MediatorListener {
         }
 
         Feature3ComponentProvider.injectionFunction = {
-            Feature3CoordinatorComponent.newInstance().inject(this)
+            Feature3CoordinatorComponent.newInstance(it).inject(this)
         }
     }
 }

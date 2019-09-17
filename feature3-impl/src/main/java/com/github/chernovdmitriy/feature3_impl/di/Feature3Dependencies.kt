@@ -8,4 +8,6 @@ interface Feature3Dependencies {
     val feature2Api: Feature2Api
 
     val feature3Output: Feature3Output
+
+    val vrp: String
 }

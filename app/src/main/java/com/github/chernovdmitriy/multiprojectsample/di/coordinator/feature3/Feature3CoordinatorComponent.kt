@@ -23,17 +23,18 @@ interface Feature3CoordinatorComponent {
 
         private var instance: SoftReference<Feature3CoordinatorComponent>? = null
 
-        fun newInstance(): Feature3CoordinatorComponent {
-            return provideComponent()
+        fun newInstance(vrp: String): Feature3CoordinatorComponent {
+            return provideComponent(vrp)
         }
 
-        fun getInstance(): Feature3CoordinatorComponent {
-            return instance?.get() ?: newInstance()
+        fun getInstance(vrp: String): Feature3CoordinatorComponent {
+            return instance?.get() ?: newInstance(vrp)
         }
 
-        private fun provideComponent(): Feature3CoordinatorComponent {
+        private fun provideComponent(vrp: String): Feature3CoordinatorComponent {
             return DaggerFeature3CoordinatorComponent
                 .builder()
+                .feature3CoordinatorModule(Feature3CoordinatorModule(vrp))
                 .feature2CoordinatorComponent(Feature2CoordinatorComponent.getInstance())
                 .navigationApi(AppComponent.instance)
                 .build()

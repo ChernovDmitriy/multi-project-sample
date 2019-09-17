@@ -1,6 +1,7 @@
 package com.github.chernovdmitriy.feature3_impl.di
 
 import com.github.chernovdmitriy.feature2_api.Feature2Api
+import com.github.chernovdmitriy.feature3_api.Feature3Api
 import com.github.chernovdmitriy.feature3_api.Feature3Object
 import dagger.Module
 import dagger.Provides
@@ -16,5 +17,4 @@ class Feature3Module {
             time = System.currentTimeMillis().toString()
         )
     }
-
 }

@@ -22,7 +22,9 @@ class Feature3Fragment : Fragment(), ComponentOwner<Feature3Component> {
         @JvmStatic
         fun newInstance(vrp: String): Feature3Fragment {
             val fragment = Feature3Fragment()
-            fragment.arguments?.putString(VRP, vrp)
+            val bundle = Bundle()
+            bundle.putString(VRP, vrp)
+            fragment.arguments = bundle
             return fragment
         }
 
@@ -33,6 +35,9 @@ class Feature3Fragment : Fragment(), ComponentOwner<Feature3Component> {
     @Inject
     lateinit var feature3Object: Feature3Object
 
+    @Inject
+    lateinit var vrp: String
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -42,7 +47,8 @@ class Feature3Fragment : Fragment(), ComponentOwner<Feature3Component> {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        textView.text = "feature3Object: $feature3Object"
+        textView1.text = "feature3Object: $feature3Object"
+        textView2.text = "VRP = $vrp"
     }
 
     override fun inject(t: Feature3Component) = t.inject(this)
@@ -53,7 +59,9 @@ class Feature3Fragment : Fragment(), ComponentOwner<Feature3Component> {
 
         return InjectionHolderX.instance.findComponent(
             componentClass = Feature3Component::class.java,
-            componentBuilder = { Feature3ComponentProvider.getInstance(arg.toString()).feature3Component }
+            componentBuilder = {
+                Feature3ComponentProvider.getInstance(arg.toString()).feature3Component
+            }
         )
     }
 }
