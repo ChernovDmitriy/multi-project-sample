@@ -5,31 +5,21 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import com.github.chernovdmitriy.injectionholdercore.ComponentOwner
 import com.github.chernovdmitriy.injectionholderx.InjectionHolderX
+import com.github.chernovdmitriy.multiprojectsample.coordinator.CoordinatorManager
+import com.github.chernovdmitriy.multiprojectsample.coordinator.main.MainCoordinator
 import com.github.chernovdmitriy.multiprojectsample.di.AppComponent
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity(), ComponentOwner<AppComponent> {
 
     @Inject
-    internal lateinit var navigator: AppNavigator
+    internal lateinit var mainCoordinator: MainCoordinator
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        mainCoordinator.startMainCoordinator(R.id.mainContainer, supportFragmentManager)
     }
-
-    override fun onResume() {
-        super.onResume()
-        navigator.bind(findNavController(R.id.nav_host_fragment))
-    }
-
-    override fun onPause() {
-        super.onPause()
-        navigator.unbind()
-    }
-
-    override fun onSupportNavigateUp(): Boolean =
-        findNavController(R.id.nav_host_fragment).navigateUp()
 
     override fun provideComponent(): AppComponent =
         InjectionHolderX.instance.findComponent(AppComponent::class.java)

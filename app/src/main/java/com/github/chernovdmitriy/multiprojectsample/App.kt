@@ -5,7 +5,7 @@ import com.github.chernovdmitriy.injectionholdercore.ComponentOwner
 import com.github.chernovdmitriy.injectionholdercore.ComponentOwnerLifecycle
 import com.github.chernovdmitriy.injectionholderx.InjectionHolderX
 import com.github.chernovdmitriy.multiprojectsample.di.AppComponent
-import com.github.chernovdmitriy.multiprojectsample.di.mediator.MediatorListener
+import com.github.chernovdmitriy.multiprojectsample.di.coordinator.MediatorListener
 
 class App : Application(), ComponentOwner<AppComponent> {
 

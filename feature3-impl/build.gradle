@@ -37,6 +37,7 @@ dependencies {
     implementation "androidx.core:core-ktx:${versions.corektx}"
     implementation "androidx.appcompat:appcompat:${versions.appcompat}"
     implementation "androidx.constraintlayout:constraintlayout:${versions.constraintlayout}"
+    implementation "android.arch.navigation:navigation-fragment-ktx:${versions.navigation}"
 
     implementation "com.github.chernovdmitriy.injectionholder:androidx:${versions.injectionholder}"
     implementation "com.google.dagger:dagger:${versions.dagger}"

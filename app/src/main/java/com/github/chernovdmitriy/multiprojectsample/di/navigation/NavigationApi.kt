@@ -1,7 +1,7 @@
 package com.github.chernovdmitriy.multiprojectsample.di.navigation
 
-import com.github.chernovdmitriy.multiprojectsample.AppNavigator
+import com.github.chernovdmitriy.multiprojectsample.coordinator.app.AppCoordinator
 
 interface NavigationApi {
-    val appNavigator: AppNavigator
+    val appNavigatorImpl: AppCoordinator
 }

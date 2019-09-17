@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.github.chernovdmitriy.feature1_api.Feature1Navigator
+import com.github.chernovdmitriy.feature1_api.Feature1Output
 import com.github.chernovdmitriy.feature1_api.Feature1Object
 import com.github.chernovdmitriy.feature1_impl.di.Feature1Component
 import com.github.chernovdmitriy.feature1_impl.di.Feature1ComponentProvider
@@ -23,7 +23,7 @@ class Feature1Fragment : Fragment(), ComponentOwner<Feature1Component> {
     }
 
     @Inject
-    internal lateinit var feature1Navigator: Feature1Navigator
+    internal lateinit var feature1Output: Feature1Output
 
     @Inject
     internal lateinit var feature1Object: Feature1Object
@@ -38,7 +38,9 @@ class Feature1Fragment : Fragment(), ComponentOwner<Feature1Component> {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         textView.text = "feature1Object: $feature1Object"
-        button.setOnClickListener { feature1Navigator.moveToFeature2() }
+
+        button1.setOnClickListener { feature1Output.clickBottom1() }
+        button2.setOnClickListener { feature1Output.clickButton2() }
     }
 
     override fun inject(t: Feature1Component) = t.inject(this)

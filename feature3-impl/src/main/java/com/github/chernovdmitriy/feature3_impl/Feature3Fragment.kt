@@ -45,14 +45,5 @@ class Feature3Fragment : Fragment(), ComponentOwner<Feature3Component> {
             componentClass = Feature3Component::class.java,
             componentBuilder = { Feature3ComponentProvider.getInstance().feature3Component }
         )
-//        val oldComponent: Feature3Component? =
-//            try {
-//                InjectionHolder.instance.findComponent(Feature3Component::class.java)
-//            } catch (e: Exception) {
-//                e.printStackTrace()
-//                null
-//            }
-//
-//        return oldComponent ?: Feature3ComponentProvider().feature3Component
     }
 }
