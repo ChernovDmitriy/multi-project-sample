@@ -31,32 +31,46 @@ class MainCoordinator(
         this.containerId = containerId
         this.fragmentManager = fragmentManager
 
-        (coordinatorManager.getCoordinator(Feature1Coordinator.KEY) as? Feature1Coordinator)
-            ?.startFeature(
-                containerId,
-                fragmentManager
-            )
+        if (!coordinatorManager.isContains(Feature1Coordinator.KEY)) {
+            Feature1Coordinator(this)
+                .startFeature(containerId, fragmentManager)
+        }
     }
 
     override fun navigateToFeature2() {
         if (containerId != 0)
-            (coordinatorManager.getCoordinator(Feature2Coordinator.KEY) as? Feature2Coordinator)
-                ?.startFeature(
-                    containerId,
-                    fragmentManager
-                )
+            if (!coordinatorManager.isContains(Feature2Coordinator.KEY)) {
+                Feature2Coordinator(this)
+                    .startFeature(containerId, fragmentManager)
+            } else {
+                (coordinatorManager.getCoordinator(Feature2Coordinator.KEY) as? Feature2Coordinator)
+                    ?.startFeature(
+                        containerId,
+                        fragmentManager
+                    )
+            }
     }
 
-    override fun navigateToFeature3() {
+    override fun navigateToFeature3(vrp: String) {
         if (containerId != 0)
-            (coordinatorManager.getCoordinator(Feature3Coordinator.KEY) as? Feature3Coordinator)
-                ?.startFeature(
-                    containerId,
-                    fragmentManager
-                )
+            if (!coordinatorManager.isContains(Feature3Coordinator.KEY)) {
+                Feature3Coordinator(this)
+                    .startFeature(containerId, fragmentManager, vrp)
+            } else {
+                (coordinatorManager.getCoordinator(Feature3Coordinator.KEY) as? Feature3Coordinator)
+                    ?.startFeature(
+                        containerId,
+                        fragmentManager,
+                        vrp
+                    )
+            }
     }
 
     override fun backOfFeature3() {
 
+    }
+
+    fun onBackPressed() {
+        mainCoordinatorOutput.back()
     }
 }

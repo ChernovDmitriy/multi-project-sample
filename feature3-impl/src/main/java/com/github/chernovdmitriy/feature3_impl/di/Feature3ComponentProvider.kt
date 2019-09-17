@@ -7,17 +7,14 @@ class Feature3ComponentProvider private constructor() {
     @Inject
     lateinit var feature3Component: Feature3Component
 
-//    init {
-//        injectionFunction?.invoke(this)
-//    }
 
     companion object {
         private val instance = Feature3ComponentProvider()
 
-        var injectionFunction: (Feature3ComponentProvider.() -> Unit)? = null
+        var injectionFunction: (Feature3ComponentProvider.(String) -> Unit)? = null
 
-        fun getInstance(): Feature3ComponentProvider {
-            injectionFunction?.invoke(instance)
+        fun getInstance(vrp: String): Feature3ComponentProvider {
+            injectionFunction?.invoke(instance, vrp)
             return instance
         }
 

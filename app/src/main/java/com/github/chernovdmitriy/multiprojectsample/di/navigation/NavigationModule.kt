@@ -1,9 +1,6 @@
 package com.github.chernovdmitriy.multiprojectsample.di.navigation
 
-import com.github.chernovdmitriy.multiprojectsample.coordinator.Coordinator
 import com.github.chernovdmitriy.multiprojectsample.coordinator.CoordinatorManager
-import com.github.chernovdmitriy.multiprojectsample.di.coordinator.feature2.Feature2Coordinator
-import com.github.chernovdmitriy.multiprojectsample.di.coordinator.feature3.Feature3Coordinator
 import com.github.chernovdmitriy.multiprojectsample.coordinator.app.AppCoordinator
 import com.github.chernovdmitriy.multiprojectsample.coordinator.main.MainCoordinator
 import dagger.Module

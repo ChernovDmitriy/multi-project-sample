@@ -2,6 +2,7 @@ package com.github.chernovdmitriy.multiprojectsample.di.coordinator.feature3
 
 import com.github.chernovdmitriy.feature2_api.Feature2Api
 import com.github.chernovdmitriy.feature3_api.Feature3Api
+import com.github.chernovdmitriy.feature3_api.Feature3Output
 import com.github.chernovdmitriy.feature3_impl.di.DaggerFeature3Component
 import com.github.chernovdmitriy.feature3_impl.di.Feature3Component
 import com.github.chernovdmitriy.feature3_impl.di.Feature3Dependencies
@@ -34,7 +35,7 @@ class Feature3CoordinatorModule {
         feature3Coordinator: Feature3Coordinator
     ): Feature3Dependencies {
         return object : Feature3Dependencies {
-            override val feature3Coordinator: Feature3Coordinator = feature3Coordinator
+            override val feature3Output: Feature3Output = feature3Coordinator
             override val feature2Api: Feature2Api = feature2Api
         }
     }

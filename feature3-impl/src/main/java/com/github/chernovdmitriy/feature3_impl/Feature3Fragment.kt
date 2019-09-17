@@ -1,6 +1,7 @@
 package com.github.chernovdmitriy.feature3_impl
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,8 +17,14 @@ import javax.inject.Inject
 class Feature3Fragment : Fragment(), ComponentOwner<Feature3Component> {
 
     companion object {
+        val VRP = "VRP"
+
         @JvmStatic
-        fun newInstance() = Feature3Fragment()
+        fun newInstance(vrp: String): Feature3Fragment {
+            val fragment = Feature3Fragment()
+            fragment.arguments?.putString(VRP, vrp)
+            return fragment
+        }
 
         @JvmStatic
         fun bundle() = Bundle()
@@ -41,9 +48,12 @@ class Feature3Fragment : Fragment(), ComponentOwner<Feature3Component> {
     override fun inject(t: Feature3Component) = t.inject(this)
 
     override fun provideComponent(): Feature3Component {
+        Log.d("AppRestore", "provideComponent Feature3Component")
+        val arg = arguments?.get(VRP)
+
         return InjectionHolderX.instance.findComponent(
             componentClass = Feature3Component::class.java,
-            componentBuilder = { Feature3ComponentProvider.getInstance().feature3Component }
+            componentBuilder = { Feature3ComponentProvider.getInstance(arg.toString()).feature3Component }
         )
     }
 }

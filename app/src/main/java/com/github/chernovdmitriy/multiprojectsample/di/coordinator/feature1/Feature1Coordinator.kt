@@ -18,7 +18,7 @@ class Feature1Coordinator(
     }
 
     override fun clickButton2() {
-        feature1CoordinatorOutput.navigateToFeature3()
+        feature1CoordinatorOutput.navigateToFeature3("VRP1")
     }
 
     fun startFeature(containerId: Int, fragmentManager: FragmentManager) {

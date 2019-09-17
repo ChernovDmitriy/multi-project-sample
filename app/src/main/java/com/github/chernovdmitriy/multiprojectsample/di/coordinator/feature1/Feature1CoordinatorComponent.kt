@@ -2,6 +2,7 @@ package com.github.chernovdmitriy.multiprojectsample.di.coordinator.feature1
 
 import com.github.chernovdmitriy.core_object_api.CoreObjectApi
 import com.github.chernovdmitriy.feature1_api.Feature1Api
+import com.github.chernovdmitriy.feature1_impl.di.DaggerFeature1Component
 import com.github.chernovdmitriy.feature1_impl.di.Feature1ComponentProvider
 import com.github.chernovdmitriy.multiprojectsample.di.AppComponent
 import com.github.chernovdmitriy.multiprojectsample.di.navigation.NavigationApi

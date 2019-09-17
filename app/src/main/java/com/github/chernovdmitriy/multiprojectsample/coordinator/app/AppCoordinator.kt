@@ -12,8 +12,10 @@ class AppCoordinator(private val coordinatorManager: CoordinatorManager) : MainC
     }
 
     fun start() {
+
     }
 
-    override fun navigateTo() {
+    override fun back() {
+
     }
 }

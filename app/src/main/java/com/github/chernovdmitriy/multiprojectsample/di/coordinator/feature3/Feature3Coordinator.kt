@@ -16,9 +16,9 @@ class Feature3Coordinator(private val feature3CoordinatorOutput: Feature3Coordin
         feature3CoordinatorOutput.backOfFeature3()
     }
 
-    fun startFeature(containerId: Int, fragmentManager: FragmentManager) {
+    fun startFeature(containerId: Int, fragmentManager: FragmentManager, vrp: String) {
         val fragment =
-            Feature3Fragment.newInstance()
+            Feature3Fragment.newInstance(vrp)
 
         fragmentManager.beginTransaction()
             .replace(containerId, fragment)

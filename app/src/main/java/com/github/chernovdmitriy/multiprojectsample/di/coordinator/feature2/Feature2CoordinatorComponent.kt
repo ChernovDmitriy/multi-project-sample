@@ -35,9 +35,9 @@ interface Feature2CoordinatorComponent {
         }
 
         private fun provideComponent(): Feature2CoordinatorComponent {
-            return DaggerFeature2Component
+            return DaggerFeature2CoordinatorComponent
                 .builder()
-                .feature1MediatorComponent(Feature1CoordinatorComponent.getInstance())
+                .feature1CoordinatorComponent(Feature1CoordinatorComponent.getInstance())
                 .navigationApi(AppComponent.instance)
                 .build()
                 .also {

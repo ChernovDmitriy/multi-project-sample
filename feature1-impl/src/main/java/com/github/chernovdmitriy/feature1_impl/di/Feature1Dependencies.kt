@@ -6,8 +6,6 @@ import com.github.chernovdmitriy.feature1_api.Feature1Output
 
 interface Feature1Dependencies {
 
-    val feature1Api: Feature1Api
-
     val coreObjectApi: CoreObjectApi
 
     val feature1Output: Feature1Output

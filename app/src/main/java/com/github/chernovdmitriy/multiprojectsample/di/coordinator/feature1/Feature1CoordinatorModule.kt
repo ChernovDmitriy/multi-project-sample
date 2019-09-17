@@ -29,13 +29,11 @@ class Feature1CoordinatorModule {
     @Provides
     @Feature1CoordinatorScope
     fun provideFeature1Deps(
-        feature1Api: Feature1Api,
         coreObjectApi: CoreObjectApi,
         feature1Coordinator: Feature1Coordinator
     ): Feature1Dependencies {
         return object : Feature1Dependencies {
             override val feature1Output: Feature1Output = feature1Coordinator
-            override val feature1Api: Feature1Api = feature1Api
             override val coreObjectApi: CoreObjectApi = coreObjectApi
         }
     }

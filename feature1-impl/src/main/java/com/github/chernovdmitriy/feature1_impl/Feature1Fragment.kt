@@ -1,6 +1,7 @@
 package com.github.chernovdmitriy.feature1_impl
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -46,6 +47,8 @@ class Feature1Fragment : Fragment(), ComponentOwner<Feature1Component> {
     override fun inject(t: Feature1Component) = t.inject(this)
 
     override fun provideComponent(): Feature1Component {
+        Log.d("AppRestore", "provideComponent Feature1Component")
+
         return InjectionHolderX.instance.findComponent(
             componentClass = Feature1Component::class.java,
             componentBuilder = { Feature1ComponentProvider.getInstance().feature1Component }

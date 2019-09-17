@@ -13,7 +13,7 @@ class Feature2Coordinator(private val feature2CoordinatorOutput: Feature2Coordin
     }
 
     override fun clickButton() {
-        feature2CoordinatorOutput.navigateToFeature3()
+        feature2CoordinatorOutput.navigateToFeature3("VRP2")
     }
 
     fun startFeature(containerId: Int, fragmentManager: FragmentManager) {
