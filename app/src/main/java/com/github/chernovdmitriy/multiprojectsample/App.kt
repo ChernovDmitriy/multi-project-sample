@@ -1,6 +1,9 @@
 package com.github.chernovdmitriy.multiprojectsample
 
 import android.app.Application
+import com.github.alexshilkin.coordinatormanager.CoordinatorOwner
+import com.github.alexshilkin.coordinatormanager.CoordinatorOwnerLifecycle
+import com.github.alexshilkin.coordinatormanager.InjectionCoordinatorHolder
 import com.github.chernovdmitriy.injectionholdercore.ComponentOwner
 import com.github.chernovdmitriy.injectionholdercore.ComponentOwnerLifecycle
 import com.github.chernovdmitriy.injectionholderx.InjectionHolderX
@@ -16,6 +19,7 @@ class App : Application(), ComponentOwner<AppComponent> {
     override fun onCreate() {
         super.onCreate()
         InjectionHolderX.init(this)
+        InjectionCoordinatorHolder.init(this)
         componentOwnerLifecycle.onCreate()
         MediatorListener.listenFeatures()
     }

@@ -1,13 +1,14 @@
 package com.github.chernovdmitriy.multiprojectsample.di.coordinator.feature1
 
+import com.github.alexshilkin.coordinatormanager.InjectionCoordinatorHolder
 import com.github.chernovdmitriy.core_object_api.CoreObjectApi
 import com.github.chernovdmitriy.feature1_api.Feature1Api
 import com.github.chernovdmitriy.feature1_api.Feature1Output
+import com.github.chernovdmitriy.feature1_impl.Feature1Coordinator
 import com.github.chernovdmitriy.feature1_impl.di.Feature1Dependencies
 import com.github.chernovdmitriy.feature1_impl.di.DaggerFeature1Component
 import com.github.chernovdmitriy.feature1_impl.di.Feature1Component
 import com.github.chernovdmitriy.injectionholderx.InjectionHolderX
-import com.github.chernovdmitriy.multiprojectsample.coordinator.CoordinatorManager
 import com.github.chernovdmitriy.multiprojectsample.coordinator.main.MainCoordinator
 import dagger.Module
 import dagger.Provides
@@ -18,12 +19,12 @@ class Feature1CoordinatorModule {
     @Provides
     @Feature1CoordinatorScope
     fun provideFeature1Coordinator(
-        mainCoordinator: MainCoordinator,
-        coordinatorManager: CoordinatorManager
+        mainCoordinator: MainCoordinator
     ): Feature1Coordinator {
-        val coordinator = Feature1Coordinator(mainCoordinator)
-        coordinatorManager.addCoordinator(Feature1Coordinator.KEY, coordinator)
-        return coordinator
+        return Feature1Coordinator(mainCoordinator)
+            .also {
+                InjectionCoordinatorHolder.instance.addOwnerlessCoordinator(it)
+            }
     }
 
     @Provides

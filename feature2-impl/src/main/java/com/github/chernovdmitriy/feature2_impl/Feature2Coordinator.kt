@@ -1,16 +1,13 @@
-package com.github.chernovdmitriy.multiprojectsample.di.coordinator.feature2
+package com.github.chernovdmitriy.feature2_impl
 
 import androidx.fragment.app.FragmentManager
+import com.github.alexshilkin.coordinatormanager.Coordinator
 import com.github.chernovdmitriy.feature2_api.Feature2Output
-import com.github.chernovdmitriy.feature2_impl.Feature2Fragment
-import com.github.chernovdmitriy.multiprojectsample.coordinator.Coordinator
 
-class Feature2Coordinator(private val feature2CoordinatorOutput: Feature2CoordinatorOutput) :
+class Feature2Coordinator(
+    private val feature2CoordinatorOutput: Feature2CoordinatorOutput
+) :
     Feature2Output, Coordinator {
-
-    companion object {
-        const val KEY = "Feature2Coordinator"
-    }
 
     override fun clickButton() {
         feature2CoordinatorOutput.navigateToFeature3("VRP2")

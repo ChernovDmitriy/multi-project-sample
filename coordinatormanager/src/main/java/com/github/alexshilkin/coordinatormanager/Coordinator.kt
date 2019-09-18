@@ -1,0 +1,3 @@
+package com.github.alexshilkin.coordinatormanager
+
+interface Coordinator

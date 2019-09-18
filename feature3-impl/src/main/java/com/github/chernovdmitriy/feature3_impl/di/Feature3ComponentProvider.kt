@@ -17,7 +17,5 @@ class Feature3ComponentProvider private constructor() {
             injectionFunction?.invoke(instance, vrp)
             return instance
         }
-
     }
-
 }

@@ -1,20 +1,19 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-apply plugin: 'kotlin-kapt'
-
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
 
 
     defaultConfig {
-        minSdkVersion 19
+        minSdkVersion 15
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles 'consumer-rules.pro'
     }
 
     buildTypes {
@@ -28,23 +27,9 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-
-    implementation project(':feature1-api')
-    implementation project(':feature2-api')
-    implementation project(':coordinatormanager')
-
-//    implementation project(':injectionholder')
-
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation "androidx.core:core-ktx:${versions.corektx}"
-    implementation "androidx.appcompat:appcompat:${versions.appcompat}"
-    implementation "androidx.constraintlayout:constraintlayout:${versions.constraintlayout}"
-    implementation "android.arch.navigation:navigation-fragment-ktx:${versions.navigation}"
-
-    implementation "com.github.chernovdmitriy.injectionholder:androidx:${versions.injectionholder}"
-    implementation "com.google.dagger:dagger:${versions.dagger}"
-    kapt "com.google.dagger:dagger-compiler:${versions.dagger}"
-
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.core:core-ktx:1.1.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'

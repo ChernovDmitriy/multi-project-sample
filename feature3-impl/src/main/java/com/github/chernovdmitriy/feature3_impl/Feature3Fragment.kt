@@ -6,7 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.github.alexshilkin.coordinatormanager.CoordinatorOwner
+import com.github.alexshilkin.coordinatormanager.InjectionCoordinatorHolder
 import com.github.chernovdmitriy.feature3_api.Feature3Object
+import com.github.chernovdmitriy.feature3_api.Feature3Output
 import com.github.chernovdmitriy.feature3_impl.di.Feature3Component
 import com.github.chernovdmitriy.feature3_impl.di.Feature3ComponentProvider
 import com.github.chernovdmitriy.injectionholdercore.ComponentOwner
@@ -14,7 +17,7 @@ import com.github.chernovdmitriy.injectionholderx.InjectionHolderX
 import kotlinx.android.synthetic.main.fmt_feature3.*
 import javax.inject.Inject
 
-class Feature3Fragment : Fragment(), ComponentOwner<Feature3Component> {
+class Feature3Fragment : Fragment(), ComponentOwner<Feature3Component>, CoordinatorOwner<Feature3Coordinator> {
 
     companion object {
         val VRP = "VRP"
@@ -34,6 +37,9 @@ class Feature3Fragment : Fragment(), ComponentOwner<Feature3Component> {
 
     @Inject
     lateinit var feature3Object: Feature3Object
+
+    @Inject
+    lateinit var feature3Output: Feature3Output
 
     @Inject
     lateinit var vrp: String
@@ -62,6 +68,17 @@ class Feature3Fragment : Fragment(), ComponentOwner<Feature3Component> {
             componentBuilder = {
                 Feature3ComponentProvider.getInstance(arg.toString()).feature3Component
             }
+        )
+    }
+
+    override fun startCoordinator(coordinator: Feature3Coordinator) {
+
+    }
+
+    override fun provideCoordinator(): Feature3Coordinator {
+        return InjectionCoordinatorHolder.instance.findCoordinator(
+            coordinatorClass = Feature3Coordinator::class.java,
+            coordinatorBuilder = { feature3Output as Feature3Coordinator }
         )
     }
 }

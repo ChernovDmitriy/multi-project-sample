@@ -1,16 +1,12 @@
-package com.github.chernovdmitriy.multiprojectsample.di.coordinator.feature3
+package com.github.chernovdmitriy.feature3_impl
 
 import androidx.fragment.app.FragmentManager
+import com.github.alexshilkin.coordinatormanager.Coordinator
 import com.github.chernovdmitriy.feature3_api.Feature3Output
-import com.github.chernovdmitriy.feature3_impl.Feature3Fragment
-import com.github.chernovdmitriy.multiprojectsample.coordinator.Coordinator
 
-class Feature3Coordinator(private val feature3CoordinatorOutput: Feature3CoordinatorOutput) :
-    Feature3Output, Coordinator {
-
-    companion object {
-        const val KEY = "Feature3Coordinator"
-    }
+class Feature3Coordinator(
+    private val feature3CoordinatorOutput: Feature3CoordinatorOutput
+) : Feature3Output, Coordinator {
 
     override fun back() {
         feature3CoordinatorOutput.backOfFeature3()

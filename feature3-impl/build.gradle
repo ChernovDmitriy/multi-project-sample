@@ -31,6 +31,8 @@ dependencies {
 
     implementation project(':feature2-api')
     implementation project(':feature3-api')
+    implementation project(':coordinatormanager')
+
 //    implementation project(':injectionholder')
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"

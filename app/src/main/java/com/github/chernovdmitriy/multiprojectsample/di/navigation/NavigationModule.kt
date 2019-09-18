@@ -1,7 +1,6 @@
 package com.github.chernovdmitriy.multiprojectsample.di.navigation
 
-import com.github.chernovdmitriy.multiprojectsample.coordinator.CoordinatorManager
-import com.github.chernovdmitriy.multiprojectsample.coordinator.app.AppCoordinator
+import com.github.alexshilkin.coordinatormanager.InjectionCoordinatorHolder
 import com.github.chernovdmitriy.multiprojectsample.coordinator.main.MainCoordinator
 import dagger.Module
 import dagger.Provides
@@ -12,26 +11,11 @@ class NavigationModule {
 
     @Singleton
     @Provides
-    internal fun provideCoordinatorManage() = CoordinatorManager()
-
-    @Singleton
-    @Provides
-    internal fun provideAppCoordinator(coordinatorManager: CoordinatorManager): AppCoordinator {
-        val coordinator = AppCoordinator(coordinatorManager)
-        coordinatorManager.addCoordinator(AppCoordinator.KEY, coordinator)
-        return coordinator
+    internal fun provideMainNavigator(): MainCoordinator {
+        return MainCoordinator().also {
+            InjectionCoordinatorHolder.instance.addOwnerlessCoordinator(
+                it
+            )
+        }
     }
-
-    @Singleton
-    @Provides
-    internal fun provideMainNavigator(
-        appCoordinator: AppCoordinator,
-        coordinatorManager: CoordinatorManager
-    ): MainCoordinator {
-        val coordinator = MainCoordinator(appCoordinator, coordinatorManager)
-        coordinatorManager.addCoordinator(MainCoordinator.KEY, coordinator)
-        return coordinator
-    }
-
-
 }

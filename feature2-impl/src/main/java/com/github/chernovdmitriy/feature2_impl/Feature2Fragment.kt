@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.github.alexshilkin.coordinatormanager.CoordinatorOwner
+import com.github.alexshilkin.coordinatormanager.InjectionCoordinatorHolder
 import com.github.chernovdmitriy.feature2_api.Feature2Object
 import com.github.chernovdmitriy.feature2_api.Feature2Output
 import com.github.chernovdmitriy.feature2_impl.di.Feature2Component
@@ -15,10 +17,13 @@ import com.github.chernovdmitriy.injectionholderx.InjectionHolderX
 import kotlinx.android.synthetic.main.fmt_feature2.*
 import javax.inject.Inject
 
-class Feature2Fragment : Fragment(), ComponentOwner<Feature2Component> {
+class Feature2Fragment : Fragment(), ComponentOwner<Feature2Component>,
+    CoordinatorOwner<Feature2Coordinator> {
 
     companion object {
-        @JvmStatic fun newInstance() = Feature2Fragment()
+        @JvmStatic
+        fun newInstance() = Feature2Fragment()
+
         @JvmStatic
         fun bundle() = Bundle()
     }
@@ -53,4 +58,14 @@ class Feature2Fragment : Fragment(), ComponentOwner<Feature2Component> {
         )
     }
 
+    override fun startCoordinator(coordinator: Feature2Coordinator) {
+
+    }
+
+    override fun provideCoordinator(): Feature2Coordinator {
+        return InjectionCoordinatorHolder.instance.findCoordinator(
+            coordinatorClass = Feature2Coordinator::class.java,
+            coordinatorBuilder = { feature2Output as Feature2Coordinator }
+        )
+    }
 }

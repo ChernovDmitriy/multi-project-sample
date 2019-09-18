@@ -1,4 +1,4 @@
-package com.github.chernovdmitriy.multiprojectsample.di.coordinator.feature2
+package com.github.chernovdmitriy.feature2_impl
 
 interface Feature2CoordinatorOutput {
 

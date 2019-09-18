@@ -1,28 +1,20 @@
 package com.github.chernovdmitriy.multiprojectsample.coordinator.main
 
 import androidx.fragment.app.FragmentManager
-import com.github.chernovdmitriy.multiprojectsample.coordinator.Coordinator
-import com.github.chernovdmitriy.multiprojectsample.coordinator.CoordinatorManager
-import com.github.chernovdmitriy.multiprojectsample.di.coordinator.feature1.Feature1Coordinator
-import com.github.chernovdmitriy.multiprojectsample.di.coordinator.feature1.Feature1CoordinatorOutput
-import com.github.chernovdmitriy.multiprojectsample.di.coordinator.feature2.Feature2Coordinator
-import com.github.chernovdmitriy.multiprojectsample.di.coordinator.feature2.Feature2CoordinatorOutput
-import com.github.chernovdmitriy.multiprojectsample.di.coordinator.feature3.Feature3Coordinator
-import com.github.chernovdmitriy.multiprojectsample.di.coordinator.feature3.Feature3CoordinatorOutput
+import com.github.alexshilkin.coordinatormanager.Coordinator
+import com.github.alexshilkin.coordinatormanager.InjectionCoordinatorHolder
+import com.github.chernovdmitriy.feature1_impl.Feature1Coordinator
+import com.github.chernovdmitriy.feature1_impl.Feature1CoordinatorOutput
+import com.github.chernovdmitriy.feature2_impl.Feature2Coordinator
+import com.github.chernovdmitriy.feature2_impl.Feature2CoordinatorOutput
+import com.github.chernovdmitriy.feature3_impl.Feature3Coordinator
+import com.github.chernovdmitriy.feature3_impl.Feature3CoordinatorOutput
 
-class MainCoordinator(
-    private val mainCoordinatorOutput: MainCoordinatorOutput,
-    private val coordinatorManager: CoordinatorManager
-) :
+class MainCoordinator :
     Feature1CoordinatorOutput,
     Feature2CoordinatorOutput,
     Feature3CoordinatorOutput,
     Coordinator {
-
-
-    companion object {
-        const val KEY = "MainCoordinator"
-    }
 
     private var containerId: Int = 0
     private lateinit var fragmentManager: FragmentManager
@@ -31,46 +23,45 @@ class MainCoordinator(
         this.containerId = containerId
         this.fragmentManager = fragmentManager
 
-        if (!coordinatorManager.isContains(Feature1Coordinator.KEY)) {
-            Feature1Coordinator(this)
-                .startFeature(containerId, fragmentManager)
-        }
+        val coordinator = InjectionCoordinatorHolder.instance.getComponentOrInit(
+            coodinatorClass = Feature1Coordinator::class.java,
+            coordinatorBuilder = { Feature1Coordinator(this) }
+        )
+        coordinator.startFeature(
+            containerId,
+            fragmentManager
+        )
     }
 
     override fun navigateToFeature2() {
-        if (containerId != 0)
-            if (!coordinatorManager.isContains(Feature2Coordinator.KEY)) {
-                Feature2Coordinator(this)
-                    .startFeature(containerId, fragmentManager)
-            } else {
-                (coordinatorManager.getCoordinator(Feature2Coordinator.KEY) as? Feature2Coordinator)
-                    ?.startFeature(
-                        containerId,
-                        fragmentManager
-                    )
-            }
+        if (containerId != 0) {
+            val coordinator = InjectionCoordinatorHolder.instance.getComponentOrInit(
+                coodinatorClass = Feature2Coordinator::class.java,
+                coordinatorBuilder = { Feature2Coordinator(this) }
+            )
+            coordinator.startFeature(
+                containerId,
+                fragmentManager
+            )
+        }
+
     }
 
     override fun navigateToFeature3(vrp: String) {
-        if (containerId != 0)
-            if (!coordinatorManager.isContains(Feature3Coordinator.KEY)) {
-                Feature3Coordinator(this)
-                    .startFeature(containerId, fragmentManager, vrp)
-            } else {
-                (coordinatorManager.getCoordinator(Feature3Coordinator.KEY) as? Feature3Coordinator)
-                    ?.startFeature(
-                        containerId,
-                        fragmentManager,
-                        vrp
-                    )
-            }
+        if (containerId != 0) {
+            val coordinator = InjectionCoordinatorHolder.instance.getComponentOrInit(
+                coodinatorClass = Feature3Coordinator::class.java,
+                coordinatorBuilder = { Feature3Coordinator(this) }
+            )
+            coordinator.startFeature(
+                containerId,
+                fragmentManager,
+                vrp
+            )
+        }
     }
 
     override fun backOfFeature3() {
 
-    }
-
-    fun onBackPressed() {
-        mainCoordinatorOutput.back()
     }
 }

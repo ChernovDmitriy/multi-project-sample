@@ -1,2 +1,2 @@
-include ':app', ':feature1-impl', ':core-object-api', ':feature1-api', ':feature2-api', ':feature2-impl', ':feature3-api', ':feature3-impl'
+include ':app', ':feature1-impl', ':core-object-api', ':feature1-api', ':feature2-api', ':feature2-impl', ':feature3-api', ':feature3-impl', ':coordinatormanager'
 rootProject.name='MultiProject Sample'

@@ -1,4 +1,4 @@
-package com.github.chernovdmitriy.multiprojectsample.di.coordinator.feature1
+package com.github.chernovdmitriy.feature1_impl
 
 interface Feature1CoordinatorOutput {
 
