@@ -5,4 +5,6 @@ interface Feature1Output {
     fun clickBottom1()
 
     fun clickButton2()
+
+    fun backPressed()
 }

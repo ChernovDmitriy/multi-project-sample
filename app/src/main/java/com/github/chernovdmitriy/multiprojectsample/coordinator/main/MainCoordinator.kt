@@ -65,6 +65,10 @@ class MainCoordinator :
         }
     }
 
+    override fun backPressed() {
+
+    }
+
     override fun backOfFeature3() {
 
     }

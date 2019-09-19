@@ -18,6 +18,10 @@ class Feature1Coordinator(
         feature1CoordinatorOutput.navigateToFeature3("VRP1")
     }
 
+    override fun backPressed() {
+
+    }
+
     fun startFeature(containerId: Int, fragmentManager: FragmentManager) {
         val fragment = Feature1Fragment.newInstance()
 
