@@ -2,8 +2,8 @@ package com.github.chernovdmitriy.multiprojectsample.di.coordinator.feature1
 
 import com.github.alexshilkin.coordinatormanager.InjectionCoordinatorHolder
 import com.github.chernovdmitriy.core_object_api.CoreObjectApi
-import com.github.chernovdmitriy.feature1_api.Feature1Api
-import com.github.chernovdmitriy.feature1_api.Feature1Output
+import com.github.chernovdmitriy.feature1_impl.api.Feature1Api
+import com.github.chernovdmitriy.feature1_impl.api.Feature1Output
 import com.github.chernovdmitriy.feature1_impl.Feature1Coordinator
 import com.github.chernovdmitriy.feature1_impl.di.Feature1Dependencies
 import com.github.chernovdmitriy.feature1_impl.di.DaggerFeature1Component

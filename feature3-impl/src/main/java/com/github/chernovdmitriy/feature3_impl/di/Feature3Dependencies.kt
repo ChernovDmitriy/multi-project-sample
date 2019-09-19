@@ -1,11 +1,11 @@
 package com.github.chernovdmitriy.feature3_impl.di
 
-import com.github.chernovdmitriy.feature2_api.Feature2Api
-import com.github.chernovdmitriy.feature3_api.Feature3Output
+import com.github.chernovdmitriy.core_object_api.CoreObjectApi
+import com.github.chernovdmitriy.feature3_impl.api.Feature3Output
 
 interface Feature3Dependencies {
 
-    val feature2Api: Feature2Api
+    val coreObjectApi: CoreObjectApi
 
     val feature3Output: Feature3Output
 

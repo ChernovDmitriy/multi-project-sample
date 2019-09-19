@@ -1,6 +1,7 @@
 package com.github.chernovdmitriy.multiprojectsample.di.coordinator.feature2
 
-import com.github.chernovdmitriy.feature2_api.Feature2Api
+import com.github.chernovdmitriy.core_object_api.CoreObjectApi
+import com.github.chernovdmitriy.feature2_impl.api.Feature2Api
 import com.github.chernovdmitriy.feature2_impl.di.Feature2ComponentProvider
 import com.github.chernovdmitriy.multiprojectsample.di.AppComponent
 import com.github.chernovdmitriy.multiprojectsample.di.coordinator.feature1.Feature1CoordinatorComponent
@@ -12,7 +13,7 @@ import java.lang.ref.SoftReference
 @Component(
     dependencies = [
         NavigationApi::class,
-        Feature1CoordinatorComponent::class
+        CoreObjectApi::class
     ],
     modules = [Feature2CoordinatorModule::class]
 )
@@ -37,7 +38,7 @@ interface Feature2CoordinatorComponent {
         private fun provideComponent(): Feature2CoordinatorComponent {
             return DaggerFeature2CoordinatorComponent
                 .builder()
-                .feature1CoordinatorComponent(Feature1CoordinatorComponent.getInstance())
+                .coreObjectApi(AppComponent.instance)
                 .navigationApi(AppComponent.instance)
                 .build()
                 .also {

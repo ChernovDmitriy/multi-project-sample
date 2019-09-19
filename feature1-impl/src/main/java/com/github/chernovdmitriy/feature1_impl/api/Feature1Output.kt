@@ -1,4 +1,4 @@
-package com.github.chernovdmitriy.feature1_api
+package com.github.chernovdmitriy.feature1_impl.api
 
 interface Feature1Output {
 

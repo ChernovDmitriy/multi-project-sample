@@ -1,6 +1,6 @@
 package com.github.chernovdmitriy.feature3_impl.di
 
-import com.github.chernovdmitriy.feature3_api.Feature3Api
+import com.github.chernovdmitriy.feature3_impl.api.Feature3Api
 import com.github.chernovdmitriy.feature3_impl.Feature3Fragment
 import dagger.Component
 

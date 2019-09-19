@@ -29,7 +29,6 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation project(':feature1-api')
     implementation project(':core-object-api')
     implementation project(':coordinatormanager')
 

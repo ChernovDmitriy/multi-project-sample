@@ -26,14 +26,14 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation project(':core-object-api')
-    implementation project(':feature1-api')
+    //implementation project(':feature1-api')
     implementation project(':feature1-impl')
-    implementation project(':feature2-api')
+    //implementation project(':feature2-api')
     implementation project(':feature2-impl')
-    implementation project(':feature3-api')
+    //implementation project(':feature3-api')
     implementation project(':feature3-impl')
     implementation project(':coordinatormanager')
-//    implementation project(':injectionholder')
+    //implementation project(':injectionholder')
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation "androidx.appcompat:appcompat:${versions.appcompat}"

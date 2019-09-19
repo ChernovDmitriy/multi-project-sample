@@ -1,9 +1,9 @@
 package com.github.chernovdmitriy.multiprojectsample.di.coordinator.feature3
 
 import com.github.alexshilkin.coordinatormanager.InjectionCoordinatorHolder
-import com.github.chernovdmitriy.feature2_api.Feature2Api
-import com.github.chernovdmitriy.feature3_api.Feature3Api
-import com.github.chernovdmitriy.feature3_api.Feature3Output
+import com.github.chernovdmitriy.core_object_api.CoreObjectApi
+import com.github.chernovdmitriy.feature3_impl.api.Feature3Api
+import com.github.chernovdmitriy.feature3_impl.api.Feature3Output
 import com.github.chernovdmitriy.feature3_impl.Feature3Coordinator
 import com.github.chernovdmitriy.feature3_impl.di.DaggerFeature3Component
 import com.github.chernovdmitriy.feature3_impl.di.Feature3Component
@@ -30,12 +30,12 @@ class Feature3CoordinatorModule(private val vrpNumber: String) {
     @Provides
     @Feature3CoordinatorScope
     fun provideFeature3Deps(
-        feature2Api: Feature2Api,
+        coreObjectApi: CoreObjectApi,
         feature3Coordinator: Feature3Coordinator
     ): Feature3Dependencies {
         return object : Feature3Dependencies {
             override val feature3Output: Feature3Output = feature3Coordinator
-            override val feature2Api: Feature2Api = feature2Api
+            override val coreObjectApi: CoreObjectApi = coreObjectApi
             override val vrp: String = vrpNumber
         }
     }

@@ -1,9 +1,10 @@
 package com.github.chernovdmitriy.multiprojectsample.di.coordinator.feature2
 
 import com.github.alexshilkin.coordinatormanager.InjectionCoordinatorHolder
-import com.github.chernovdmitriy.feature1_api.Feature1Api
-import com.github.chernovdmitriy.feature2_api.Feature2Api
-import com.github.chernovdmitriy.feature2_api.Feature2Output
+import com.github.chernovdmitriy.core_object_api.CoreObjectApi
+import com.github.chernovdmitriy.feature1_impl.api.Feature1Api
+import com.github.chernovdmitriy.feature2_impl.api.Feature2Api
+import com.github.chernovdmitriy.feature2_impl.api.Feature2Output
 import com.github.chernovdmitriy.feature2_impl.Feature2Coordinator
 import com.github.chernovdmitriy.feature2_impl.di.DaggerFeature2Component
 import com.github.chernovdmitriy.feature2_impl.di.Feature2Component
@@ -30,12 +31,12 @@ class Feature2CoordinatorModule {
     @Provides
     @Feature2CoordinatorScope
     fun provideFeature2Deps(
-        feature1Api: Feature1Api,
+        coreObjectApi: CoreObjectApi,
         feature2Coordinator: Feature2Coordinator
     ): Feature2Dependencies {
         return object : Feature2Dependencies {
             override val feature2Output: Feature2Output = feature2Coordinator
-            override val feature1Api: Feature1Api = feature1Api
+            override val coreObjectApi: CoreObjectApi = coreObjectApi
         }
     }
 

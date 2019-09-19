@@ -8,8 +8,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.github.alexshilkin.coordinatormanager.CoordinatorOwner
 import com.github.alexshilkin.coordinatormanager.InjectionCoordinatorHolder
-import com.github.chernovdmitriy.feature1_api.Feature1Output
-import com.github.chernovdmitriy.feature1_api.Feature1Object
+import com.github.chernovdmitriy.feature1_impl.api.Feature1Output
+import com.github.chernovdmitriy.feature1_impl.api.Feature1Object
 import com.github.chernovdmitriy.feature1_impl.di.Feature1Component
 import com.github.chernovdmitriy.feature1_impl.di.Feature1ComponentProvider
 import com.github.chernovdmitriy.injectionholdercore.ComponentOwner

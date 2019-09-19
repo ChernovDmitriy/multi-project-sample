@@ -1,7 +1,7 @@
 package com.github.chernovdmitriy.feature2_impl.di
 
-import com.github.chernovdmitriy.feature1_api.Feature1Api
-import com.github.chernovdmitriy.feature2_api.Feature2Object
+import com.github.chernovdmitriy.core_object_api.CoreObjectApi
+import com.github.chernovdmitriy.feature2_impl.api.Feature2Object
 import dagger.Module
 import dagger.Provides
 
@@ -10,9 +10,9 @@ class Feature2Module {
 
     @Feature2Scope
     @Provides
-    internal fun provideFeature2Object(feature1Api: Feature1Api): Feature2Object {
+    internal fun provideFeature2Object(coreObjectApi: CoreObjectApi): Feature2Object {
         return Feature2Object(
-            feature1ToString = feature1Api.feature1Object.toString(),
+            coreObject = coreObjectApi.coreObject.toString(),
             time = System.currentTimeMillis().toString()
         )
     }

@@ -1,7 +1,7 @@
 package com.github.chernovdmitriy.feature1_impl.di
 
 import com.github.chernovdmitriy.core_object_api.CoreObjectApi
-import com.github.chernovdmitriy.feature1_api.Feature1Object
+import com.github.chernovdmitriy.feature1_impl.api.Feature1Object
 import dagger.Module
 import dagger.Provides
 
@@ -12,7 +12,7 @@ class Feature1Module {
     @Provides
     fun provideFeature1Object(coreObjectApi: CoreObjectApi): Feature1Object {
         return Feature1Object(
-            coreObjectToString = coreObjectApi.coreObject.toString(),
+            coreObject = coreObjectApi.coreObject.toString(),
             time = System.currentTimeMillis().toString()
         )
     }

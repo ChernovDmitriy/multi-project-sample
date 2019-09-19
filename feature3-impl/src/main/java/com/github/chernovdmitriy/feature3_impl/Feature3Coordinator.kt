@@ -2,7 +2,7 @@ package com.github.chernovdmitriy.feature3_impl
 
 import androidx.fragment.app.FragmentManager
 import com.github.alexshilkin.coordinatormanager.Coordinator
-import com.github.chernovdmitriy.feature3_api.Feature3Output
+import com.github.chernovdmitriy.feature3_impl.api.Feature3Output
 
 class Feature3Coordinator(
     private val feature3CoordinatorOutput: Feature3CoordinatorOutput
