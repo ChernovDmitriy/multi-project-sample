@@ -21,10 +21,9 @@ class Feature1CoordinatorModule {
     fun provideFeature1Coordinator(
         mainCoordinator: MainCoordinator
     ): Feature1Coordinator {
-        return Feature1Coordinator(mainCoordinator)
-            .also {
-                InjectionCoordinatorHolder.instance.addOwnerlessCoordinator(it)
-            }
+        return InjectionCoordinatorHolder.instance.findCoordinator(
+            Feature1Coordinator::class.java,
+            { Feature1Coordinator(mainCoordinator) })
     }
 
     @Provides

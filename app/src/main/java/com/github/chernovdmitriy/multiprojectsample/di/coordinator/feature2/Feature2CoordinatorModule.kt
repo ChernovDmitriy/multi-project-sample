@@ -2,7 +2,6 @@ package com.github.chernovdmitriy.multiprojectsample.di.coordinator.feature2
 
 import com.github.alexshilkin.coordinatormanager.InjectionCoordinatorHolder
 import com.github.chernovdmitriy.feature1_api.Feature1Api
-import com.github.chernovdmitriy.feature1_impl.Feature1Coordinator
 import com.github.chernovdmitriy.feature2_api.Feature2Api
 import com.github.chernovdmitriy.feature2_api.Feature2Output
 import com.github.chernovdmitriy.feature2_impl.Feature2Coordinator
@@ -20,11 +19,11 @@ class Feature2CoordinatorModule {
     @Provides
     @Feature2CoordinatorScope
     fun provideFeature2Coordinator(
-        mainCoordinator: MainCoordinator): Feature2Coordinator {
-        return Feature2Coordinator(mainCoordinator)
-            .also {
-                InjectionCoordinatorHolder.instance.addOwnerlessCoordinator(it)
-            }
+        mainCoordinator: MainCoordinator
+    ): Feature2Coordinator {
+        return InjectionCoordinatorHolder.instance.findCoordinator(
+            Feature2Coordinator::class.java,
+            { Feature2Coordinator(mainCoordinator) })
     }
 
 

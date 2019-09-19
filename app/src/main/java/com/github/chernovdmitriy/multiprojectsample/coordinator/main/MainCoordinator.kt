@@ -23,14 +23,18 @@ class MainCoordinator :
         this.containerId = containerId
         this.fragmentManager = fragmentManager
 
-        val coordinator = InjectionCoordinatorHolder.instance.getComponentOrInit(
-            coodinatorClass = Feature1Coordinator::class.java,
-            coordinatorBuilder = { Feature1Coordinator(this) }
-        )
-        coordinator.startFeature(
-            containerId,
-            fragmentManager
-        )
+        val coordinatorRestored =
+            InjectionCoordinatorHolder.instance.findOrNullCoordinator(Feature1Coordinator::class.java)
+        if (coordinatorRestored == null) {
+            val coordinator = InjectionCoordinatorHolder.instance.getComponentOrInit(
+                coodinatorClass = Feature1Coordinator::class.java,
+                coordinatorBuilder = { Feature1Coordinator(this) }
+            )
+            coordinator.startFeature(
+                containerId,
+                fragmentManager
+            )
+        }
     }
 
     override fun navigateToFeature2() {

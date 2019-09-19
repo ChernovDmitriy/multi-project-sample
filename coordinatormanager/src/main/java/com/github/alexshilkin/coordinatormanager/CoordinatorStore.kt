@@ -1,5 +1,7 @@
 package com.github.alexshilkin.coordinatormanager
 
+import android.util.Log
+
 class CoordinatorStore {
 
     private val coordinators = hashMapOf<String, Coordinator>()
@@ -8,11 +10,19 @@ class CoordinatorStore {
 
     fun addOwnerLessComponent(coordinator: Coordinator) {
         ownerLessCoordinators.add(coordinator)
+        Log.d("CoordinatorStore", "addOwnerLessComponent coordinator = $coordinator")
+        Log.d("CoordinatorStore", "coordinators coordinators = ${coordinators.values}")
+        Log.d("CoordinatorStore", "coordinators ownerLessCoordinators = ${ownerLessCoordinators}")
+        Log.d("CoordinatorStore", "--------------------------------------------------------------------------------------------------------------------------------------")
     }
 
     fun add(key: String, coordinator: Coordinator) {
         coordinators[key] = coordinator
         ownerLessCoordinators.remove(coordinator)
+        Log.d("CoordinatorStore", "add key = $key, coordinator = $coordinator")
+        Log.d("CoordinatorStore", "coordinators coordinators = ${coordinators.values}")
+        Log.d("CoordinatorStore", "coordinators ownerLessCoordinators = ${ownerLessCoordinators}")
+        Log.d("CoordinatorStore", "--------------------------------------------------------------------------------------------------------------------------------------")
     }
 
     operator fun get(key: String): Coordinator =
@@ -21,6 +31,10 @@ class CoordinatorStore {
     fun remove(key: String) {
         val coordinator = coordinators.remove(key)
         coordinator?.let { ownerLessCoordinators.remove(it) }
+        Log.d("CoordinatorStore", "remove key = $key")
+        Log.d("CoordinatorStore", "coordinators coordinators = ${coordinators.values}")
+        Log.d("CoordinatorStore", "coordinators ownerLessCoordinators = ${ownerLessCoordinators}")
+        Log.d("CoordinatorStore", "--------------------------------------------------------------------------------------------------------------------------------------")
     }
 
     fun remove(coordinatorClass: Class<*>): Boolean {
@@ -38,6 +52,10 @@ class CoordinatorStore {
             return coordinators.values.remove(it)
         }
 
+        Log.d("CoordinatorStore", "remove coordinatorClass = $coordinatorClass")
+        Log.d("CoordinatorStore", "coordinators coordinators = ${coordinators.values}")
+        Log.d("CoordinatorStore", "coordinators ownerLessCoordinators = ${ownerLessCoordinators}")
+        Log.d("CoordinatorStore", "--------------------------------------------------------------------------------------------------------------------------------------")
         return false
     }
 

@@ -37,4 +37,9 @@ abstract class CoordinatorHolder<ApplicationType>(
         coordinatorBuilder: (() -> T)? = null
     ): T = coordinatorCallback.findCoordinator(coordinatorClass, coordinatorBuilder)
 
+    @JvmOverloads
+    fun <T : Coordinator> findOrNullCoordinator(
+        coordinatorClass: Class<T>
+    ): T? = coordinatorCallback.findOrNullCoordinator(coordinatorClass)
+
 }
